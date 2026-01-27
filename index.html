@@ -1,5 +1,6 @@
 ---
 layout: default
+title: "Sakura Jekyll (modified)"
 ---
 
 {% assign post = site.posts.first %}
@@ -8,18 +9,29 @@ layout: default
         <h1>{{ post.title }}</h1>
     </header>
     {{ post.content }}
-    <footer>
-        <small><em>
-            <address>Posted by {{ post.author }}</address>
-            <time datetime="{{ post.date }}">{{ post.date | date: site.date_format }}</time>
-        </em></small>
-    </footer>
+       <footer>
+            {% if post.categories.size > 0 %}
+            <nav>
+                <small><em>category: {% for category in post.categories %}{% assign slugified_category = category | slugify %}<a href="{{ site.baseurl}}/category/{{ slugified_category }}">{{ slugified_category }}</a>{% if forloop.last %}{% else %}, {% endif %}{% endfor %}</em></small>
+            </nav>
+            {% endif %}
+            {% if page.tags.size > 0 %}
+            <nav>
+                <small><em>tag: {% for tag in post.tags %}{% assign slugified_tag = tag | slugify %}<a href="{{ site.baseurl}}/tag/{{ slugified_tag }}">#{{ slugified_tag }}</a>{% if forloop.last %}{% else %}, {% endif %}
+                {% endfor %}</em></small>
+            </nav>
+            {% endif %}
+            <address>
+                <small><em>Posted by {{ post.author }}{% if site.license %}, {{site.license}}{% endif %}</em></small>
+            </address>
+            <time datetime="{{ post.date | date_to_xmlschema }}">        <small><em>{{ post.date | date: site.date_format }}</em></small></time>
+    </footer> 
 </article>
 <aside>
     <nav class="chrono">
         {% for p in site.posts offset:1 limit:1 %}
             {% if p %}
-        <a class="go-right sakura-fade no-border" href="{{p.url}}">{{p.title}} &raquo;</a>
+        <a class="go-right sakura-fade no-border" href="{{site.baseurl}}{{p.url}}">{{p.title}} &raquo;</a>
             {% endif %}
         {% endfor %}
     </nav>
