@@ -9,20 +9,31 @@ layout: default
     </header>
     {{ content }}
     <footer>
-        <small><em>
-            <address>Posted by {{ post.author }}</address>
-            <time datetime="{{ post.date }}">{{ post.date | date: site.date_format }}</time>
-        </em></small>
+            {% if page.categories.size > 0 %}
+            <nav>
+                <small><em>category: {% for category in page.categories %}{% assign slugified_category = category | slugify %}<a href="{{ site.baseurl}}/category/{{ slugified_category }}">{{ slugified_category }}</a>{% if forloop.last %}{% else %}, {% endif %}{% endfor %}</em></small>
+            </nav>
+            {% endif %}
+            {% if page.tags.size > 0 %}
+            <nav>
+                <small><em>tag: {% for tag in page.tags %}{% assign slugified_tag = tag | slugify %}<a href="{{ site.baseurl}}/tag/{{ slugified_tag }}">#{{ slugified_tag }}</a>{% if forloop.last %}{% else %}, {% endif %}
+                {% endfor %}</em></small>
+            </nav>
+            {% endif %}
+            <address>
+                <small><em>Posted by {{ post.author }}{% if site.license %}, {{site.license}}{% endif %}</em></small>
+            </address>
+            <time datetime="{{ post.date | date_to_xmlschema }}">        <small><em>{{ post.date | date: site.date_format }}</em></small></time>
     </footer>
     {% include comments.html %}
 </article>
 <aside>
     <nav class="chrono">
         {% if page.next.url %}
-        <a class="go-left sakura-blossom no-border" href="{{page.next.url}}">&laquo; {{page.next.title}} </a>
+        <a class="go-left sakura-blossom no-border " href="{{site.baseurl}}{{page.next.url}}">&laquo; {{page.next.title}} </a>
         {% endif %}
         {% if page.previous.url %}
-        <a class="go-right sakura-fade no-border" href="{{page.previous.url}}">{{page.previous.title}} &raquo;</a>
+        <a class="go-right sakura-fade no-border " href="{{ site.baseurl }}{{page.previous.url}}">{{page.previous.title}} &raquo;</a>
         {% endif %}
     </nav>
     <div style="clear: both;"></div>

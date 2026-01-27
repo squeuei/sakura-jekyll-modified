@@ -1,11 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
-<!-- ============================================================================================-->
-<!-- **psstt** This is a secret page. You're not supposed to see this code! -->
-<!-- Go away! Last Warning! -->
-<!-- DAMN! You're a badass. -->
-<!-- Using minimal css framework: http://github.com/miteshninja/sakura -->
-<!-- ============================================================================================-->
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+<!-- Powered by sakura, a minimal css framework: https://github.com/oxalorg/sakura -->
 <head>
     <!-- Config -->
     <meta charset="UTF-8">
@@ -15,18 +10,27 @@
     <title>{{ page.title }}</title>
 
     <!-- Assets -->
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/normalize.css">
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/sakura.css" async>
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css" async>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css/normalize.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sakura.css/css/sakura-earthly.css" type="text/css" media="screen">
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom.css"  media="screen"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sakura.css/css/sakura-dark.css" media="screen and (prefers-color-scheme: dark)" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/custom-dark.css"  media="screen and (prefers-color-scheme: dark)" />
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/svg-icons.css">
     <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
+
+    <!-- SEO tags-->
+    {% seo %}
+
 </head>
 
 <body>
     <header>
         <nav>
             <a class="sakura-blossom no-border" href="{{ site.baseurl }}/">{{ site.title }}</a> ::
-            <a class="sakura-fade no-border" href="{{ site.baseurl }}/blog/">blog</a>
-            <a class="sakura-fade no-border" href="{{ site.baseurl }}/about/">about</a>
+            <a class="sakura-fade no-border" href="{{ site.baseurl }}/blog/">Blog</a> : 
+            <a class="sakura-fade no-border" href="{{ site.baseurl }}/tag/">Tags</a> : 
+            <a class="sakura-fade no-border" href="{{ site.baseurl }}/category/">Categories</a> : 
+            <a class="sakura-fade no-border" href="{{ site.baseurl }}/about/">About</a>
         </nav>
     </header>
     <main>
