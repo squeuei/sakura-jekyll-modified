@@ -1,22 +1,26 @@
-permalink: /blog/:title
-sakura-jekyll-version: 0.9.0
+permalink: '/blog/:year/:month/:day/:title'
+sakura-jekyll-version: 0.9.1
 # Information required for feed
-title: Sakura Jekyll # Change this to your site name.
+title: Sakura Jekyll (modified) # Change this to your site name.
 description:
 url:
-author:
-    twitter: # twitter user name here
+baseurl:
+author: 
+    twitter: '' # twitter user name here
+license: 'all rights reserved.'
+lang: en
 
-date_format: "%b %d, %Y"
+date_format: '%FT%T%:z'
+timezone:
 
 defaults:
   -
     scope:
-      path: "_posts"
-      type: "posts"
+      path: '_posts'
+      type: 'posts'
     values:
-      layout: "post"
-      author: "" # Set this to default author
+      layout: 'post'
+      author:  'sakura' # Set this to default author
 
 
 # Third-party services
@@ -25,6 +29,7 @@ google_analytics:
 disqus_shortname:
 twitter:
     username:
+    card: summary
 
 # Includes an icon in the 'ABOUT' page for each username you enter
 footer-links:
@@ -40,9 +45,22 @@ footer-links:
   twitter:
   stackoverflow: # your stackoverflow profile, e.g. "users/50476/bart-kiers"
   youtube: # channel/<your_long_string> or user/<user-name>
-  googleplus: # anything in your profile username that comes after plus.google.com/
+
+jekyll-archives:
+  enabled: 
+    - tags
+    - categories
+  layout: archive
+  permalinks:
+    tag: '/tag/:name/'
+    category: '/category/:name/'
+
+feed:
+  posts_limit: 50
 
 gems:
     - jekyll-sitemap
     - jekyll-feed
     - jekyll-seo-tag
+    - jekyll-archives
+#    - jekyll-redirect-from
