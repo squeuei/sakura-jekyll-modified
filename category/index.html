@@ -1,0 +1,13 @@
+---
+layout: default
+title: "Categories"
+---
+<h1>Categories</h1>
+<ul>
+  {% assign sorted_cats = site.categories | sort%}
+  {% for cat_iter in sorted_cats %}
+  <li style="padding-bottom:7px;">
+    <a href="{{ site.baseurl }}/category/{{ cat_iter[0] }}">{{ cat_iter[0] }}</a>
+</li>
+  {% endfor %}
+</ul>
