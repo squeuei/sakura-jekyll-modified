@@ -55,6 +55,11 @@ jekyll-archives:
     tag: '/tag/:name/'
     category: '/category/:name/'
 
+picture:
+  source: "assets/images/"
+  output: "assets/images/resized"
+  suppress_warnings: true
+
 feed:
   posts_limit: 50
 
@@ -64,3 +69,4 @@ gems:
     - jekyll-seo-tag
     - jekyll-archives
 #    - jekyll-redirect-from
+    - jekyll_picture_tag
